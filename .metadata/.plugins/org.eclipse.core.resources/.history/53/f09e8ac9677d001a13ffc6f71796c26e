@@ -1,0 +1,122 @@
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Scanner;
+
+
+class Account 
+{ 
+    private int number;
+    private int balance; // 은행 계좌 잔고  
+    //  private String order; // 계좌 생성 순서  
+    Account() 
+    { 
+          number = (int) (Math.random() * 1000) + 10000;//계좌 번호를 랜덤하게 생성 
+          balance = 0; //잔고를 0으로 초기화  
+          System.out.println("새로운 계좌가 만들어졌습니다.\n 계좌 번호 : " + number); 
+   } 
+   public int deposit(int amount) 
+   { // 계좌에 예금하는 메소드  
+         return balance = balance + amount; 
+  } 
+  public void withdraw(int amount) 
+  { // 계좌에서 출금하는 메소드  
+        if (balance >= amount) 
+        { 
+              balance = balance - amount; 
+       } else 
+       { 
+             System.out.println("잔고가 부족합니다"); // 계좌 잔액이 입력값보다 적을 시 잔고부족 메시지 출력  
+      } 
+  } 
+  public void setBalance(int balance) 
+  { 
+        this.balance = balance; 
+  } // 필드값을 반환하는 설정자  
+  public int getBalance() 
+  { 
+        return balance; 
+  } // 접근자  
+  public int getNumber() 
+  { 
+        return number; 
+  } 
+} 
+public class First
+{ 
+    public static int First(ArrayList<Account> data, int number)//계좌 번호로 계좌 찾기 
+    { 
+          for (int i = 0; i < data.size(); i++) 
+          { 
+                if (data.get(i).getNumber() == number) 
+                { 
+                      return i; 
+               } 
+        } 
+        System.out.println("존재 하지 않은 계좌 입니다."); 
+        return -1;//못찾으면 -1 리턴 
+  } 
+   
+   
+  public static void main(String[] args) 
+  { 
+        Scanner sc = new Scanner(System.in); 
+        int x, y, number, index; 
+        ArrayList<Account> data = new ArrayList<Account>();//여러개의 계좌를 저장 
+        //Account a = new Account(); // 참조변수 선언 동시에 객체생성  
+        while (true) 
+        { 
+              System.out.print("무엇을 하시겠습니까?" 
+                      + "1.새로운 계좌 생성" 
+                      + "2.예금" 
+                      + "3.출금" 
+                      + "4.남은 잔액확인"); 
+              x = sc.nextInt(); 
+              switch (x) 
+              { 
+                    case 1: 
+                        Account a = new Account(); 
+                        break; 
+                    case 2: 
+                        System.out.print("계좌 번호를 입력해주세요 : "); 
+                        number = sc.nextInt(); 
+                        index = getAccount(data, number);//저장된 계좌의 위치찾기 
+                        if (index == -1) 
+                        { 
+                              break; 
+                       } 
+                       System.out.print("예금액을 입력해주세요 : "); 
+                       y = sc.nextInt(); 
+                       data.get(index).deposit(y); 
+                       break; 
+                   case 3: 
+                       System.out.print("계좌 번호를 입력해주세요 : "); 
+                       number = sc.nextInt(); 
+                       index = getAccount(data, number); 
+                       if (index == -1) 
+                       { 
+                             break; 
+                      } 
+                      System.out.print("출금액을 입력해주세요 : "); 
+                      y = sc.nextInt(); 
+                      data.get(index).withdraw(y); 
+                      break; 
+                  case 4: 
+                      System.out.print("계좌 번호를 입력해주세요 :"); 
+                      number = sc.nextInt(); 
+                      index = getAccount(data, number); 
+                      if (index == -1) 
+                      { 
+                            break; 
+                     } 
+                     System.out.println("잔액" + data.get(index).getBalance() + "원"); 
+                     break; 
+          } 
+      } 
+  }
+
+
+private static int getAccount(ArrayList<Account> data, int number) {
+	return 0;
+} 
+} 
+

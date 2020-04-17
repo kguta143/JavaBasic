@@ -1,0 +1,16 @@
+package jdbc.gui;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public interface InfoModel {
+	//부모와 틀이 같아야 오버라이딩 됨
+	void insert(InfoVO vo) throws SQLException;	// public abstract가 자동으로 붙음
+	ArrayList<InfoVO> selectAll() throws SQLException;	
+	void delete() throws SQLException;
+	InfoVO selectByTel(String tel) throws SQLException;
+	
+	void modify(InfoVO vo) throws SQLException;
+	
+}
+ 

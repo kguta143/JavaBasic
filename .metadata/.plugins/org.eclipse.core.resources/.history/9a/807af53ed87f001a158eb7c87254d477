@@ -1,0 +1,13 @@
+
+public class Fishing_Ground {
+	//멤버변수 선언
+	
+	//
+	
+	//메인화면구성
+	
+	public static void main(String[] args) {
+		
+	}
+
+}

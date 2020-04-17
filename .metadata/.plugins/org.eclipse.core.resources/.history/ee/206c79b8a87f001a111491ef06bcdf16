@@ -1,0 +1,50 @@
+package jfreechart;
+
+import java.sql.*;
+import java.util.*;
+
+public class Database {
+
+	String URL = "jdbc:oracle:thin:@192.168.0.68:1521:orcl";
+	String USER ="scott";
+	String PASS = "tiger";
+
+	public ArrayList<ArrayList> getData() {
+
+		ArrayList<ArrayList> data = new ArrayList<ArrayList>();
+		try{
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(URL, USER , PASS);	
+			
+			//***************************************************************
+			/*
+			String sql = "SELECT nvl(TO_CHAR(hiredate, 'MM'),'00') hire_month, count(*) cnt " + 
+					"  FROM emp " + 
+					"  GROUP BY TO_CHAR(hiredate, 'MM') " + 
+					"  ORDER BY hire_month ";
+			*/
+			String sql = "SELECT nvl(job, '개발자') job, nvl(round(avg(sal)),0) avg " + 
+					"  FROM emp " + 
+					"  GROUP BY nvl(job, '개발자')";
+			//***************************************************************
+			
+			PreparedStatement stmt = con.prepareStatement( sql );	
+
+			ResultSet rset = stmt.executeQuery();
+
+			
+			while( rset.next() ){
+				ArrayList temp = new ArrayList();
+				temp.add( rset.getInt("cnt"));					//****************
+				temp.add( rset.getString("hire_month"));		//****************		
+				data.add(temp);
+			}
+			rset.close();
+			stmt.close();
+			con.close();
+		} catch(Exception ex){
+			System.out.println("에러 : " + ex.getMessage() );
+		}
+		return data;
+	}
+}

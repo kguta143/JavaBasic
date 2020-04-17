@@ -1,0 +1,9 @@
+package view;
+
+import java.awt.GridLayout;
+
+public class RecordView {
+
+	public RecordView() {
+	}
+}

@@ -1,0 +1,58 @@
+package basic;
+
+import java.sql.*;
+
+public class TestUpdate2 {
+
+	public static void main(String[] args) {
+		
+		int deptno = 20;
+		int salInc = 500;
+		Connection con = null;
+		
+		try {
+		// 1. 드라이버(OracleDriver)를 메모리에 로딩
+		// new oracle.jdbc.driver.OracleDriver();
+		// 예외처리 해야함
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		
+		// 2. Connection 얻어오기
+		con = DriverManager.getConnection(
+				"jdbc:oracle:thin:@192.168.0.68:1521:orcl", "scott", "tiger");	//java와 oracle을 연결하는 가상통로
+		 
+		// 3. SQL 문장 만들기
+		//INSERT INTO emp(empno, ename, sal) VALUES(9001,'맹순이',4000)
+		//"9001번 사원의 이름은 '홍길숙'이고 급여는 4500로 변경하기";
+		//String sql = "UPDATE emp SET ename='홍길숙',sal=4500 WHERE empno='9001'";
+		//String sql = "DELETE FROM emp_copy";
+		//"20번 부서의 사원들 급여를 500달러 인상";
+		String sql = "UPDATE emp SET sal=sal+? WHERE deptno=?";
+		
+		// 4. 전송객체 얻어오기(3가지 있음)
+		//Statement st = con.createStatement();
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setInt(1, salInc);
+		st.setInt(2, deptno);
+		
+		// 5. 전송 
+		//		- int executeUpdate() : INSERT / UPDATE / DELETE	리턴형은 int형 (리턴형이 달라서 오버로딩을 못함)
+		//		- ResultSet executeQuery() : SELECT	ResultSet 으로 받아야함
+		//int result = st.executeUpdate(sql);
+		int result = st.executeUpdate();
+		System.out.println(result + "행을 실행합니다.");
+		// 6. 닫기
+		st.close();
+		
+		System.out.println("성공");
+		}catch(Exception e) {
+			System.out.println("실패 : " + e.getMessage());
+		}finally {
+			try {
+				con.close();// 완전 중요 DB Connection은 닫아줘야한다.
+			} catch (SQLException e) {
+			}  
+		}
+		
+	}
+
+}

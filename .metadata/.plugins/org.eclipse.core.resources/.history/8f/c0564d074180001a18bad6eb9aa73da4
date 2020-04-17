@@ -1,0 +1,43 @@
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
+import javax.swing.*;
+
+
+import view.ItemView;
+import view.MainView;
+import view.RecordView;
+public class Fishing_Ground extends JFrame{
+	//멤버변수 선언
+	MainView mv;
+	ItemView iv;
+	RecordView rc;
+
+	//메인화면구성
+	public Fishing_Ground() {
+		super("실내낚시터");
+		// 각 탭부여
+		JTabbedPane pane = new JTabbedPane();
+		pane.add("MainView",mv);
+		pane.add("RecordView", rc);
+		pane.add("ItemView",iv);
+
+		// 화면출력
+		setLayout(new BorderLayout());
+
+		// CENTER에 탭화면
+		add(pane,BorderLayout.CENTER);
+
+		// 화면사이즈
+		setSize(1300,1200);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+
+	public static void main(String[] args) {
+		new Fishing_Ground();
+
+	}
+
+}

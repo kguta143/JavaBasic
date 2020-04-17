@@ -1,0 +1,89 @@
+package model.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import model.VideoDao;
+import model.vo.Video;
+
+public class VideoModel implements VideoDao{
+	String url ="jdbc:oracle:thin:@192.168.0.68:1521:orcl";
+	String user = "scott";
+	String pass = "tiger";
+
+	public VideoModel() throws Exception{
+		// 1. 드라이버로딩
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+	}
+
+	public void insertVideo(Video vo, int count) throws Exception{
+
+		Connection con = null;
+		// 2. Connection 연결객체 얻어오기
+		try {
+			con = DriverManager.getConnection(url,user,pass);
+			con.setAutoCommit(false);	//자동커밋을 방지
+			// 3. sql 문장 만들기
+			String sql = "Insert into movie VALUES (SEQUENCE_movie_movieid.nextval,?,?,?,?,?)";
+			// 4. sql 전송객체 (PreparedStatement)		
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, vo.getGenre());
+			st.setString(2, vo.getVideoName());
+			st.setString(3, vo.getDirector());
+			st.setString(4, vo.getActor());
+			st.setString(5, vo.getExp());
+			// 5.첫번째 sql 문장 전송
+			st.executeUpdate();
+
+			// 6.닫기
+			st.close();
+
+			for(int i=0; i<count; i++) {
+				// 5. 두번째 sql1 문장 전송
+				String sql1 = "INSERT INTO video VALUES( sequence_video_videoid.nextval, SEQUENCE_movie_movieid.currval )";
+				PreparedStatement st1 = con.prepareStatement(sql1);
+				st1.executeUpdate();
+				st1.close();
+			}
+		}catch(SQLException e) {
+			con.rollback();
+		}finally {
+			con.close();
+		}
+	}
+
+	public ArrayList SelectVideo(int index, String word) throws Exception {
+		ArrayList data = new ArrayList();
+		String [] colName = {"title","actor"};
+		Connection con = null;
+		// 2. Connection 연결객체 얻어오기
+		con = DriverManager.getConnection(url,user,pass);
+		// 3. SQL 문장
+		String sql = "SELECT movieid, title, actor " + 
+				" FROM movie " + 
+				" WHERE "+ colName[index] +" like '%"+word+"%'";
+		// 4. sql 전송객체 (PreparedStatement)		
+		Statement st = con.createStatement();
+
+		// 5.전송
+		ResultSet rs = st.executeQuery(sql);
+
+		while(rs.next()) {	//한줄씩만 읽음 다음칸으로 내려오는 것을 next(레코드가 몇개인지 모르니까 마지막 레코드 다음에 아무값이 없으면 false로 떨어지며 프로그램 종료)
+		data.add(rs.getString("movieid"));
+		data.add(rs.getString("title"))	;
+		data.add(rs.getString("actor"));
+		}
+		// 6.닫기
+		rs.close();
+		st.close();
+		con.close();
+		
+		return data;	//ArrayList의 ArrayList 리턴
+	
+	}
+}

@@ -1,0 +1,25 @@
+package jdbc.gui;
+
+import java.sql.SQLException;
+
+public class InfoModelImpl implements InfoModel {
+
+	@Override
+	public void insert() throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void selectAll() throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void delete() throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+}

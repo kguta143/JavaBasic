@@ -1,0 +1,46 @@
+import java.util.Calendar;
+import java.util.Scanner;
+
+class Account { // 계좌 클래스 
+	  private int balance; // 은행 계좌 잔고 
+	  //  private String order; // 계좌 생성 순서 
+	  Account(){ 
+	    balance = 0; //잔고를 0으로 초기화 
+	    System.out.print("새로운 계좌가 만들어졌습니다."); 
+	 } 
+	 public int deposit(int amount){ // 계좌에 예금하는 메소드 
+	   return balance = balance + amount ; 
+	} 
+	public void withdraw(int amount){ // 계좌에서 출금하는 메소드 
+	  if( balance >= amount ) 
+	  balance = balance - amount ; 
+	  else  
+	  System.out.println("잔고가 부족합니다"); // 계좌 잔액이 입력값보다 적을 시 잔고부족 메시지 출력 
+	} 
+	public void setBalance(int balance) { this.balance = balance; } // 필드값을 반환하는 설정자 
+	public int getBalance() { return balance; } // 접근자 
+	} 
+
+public class First {
+	
+	public static void main(String[] args) {
+		/*
+		 * 3. 다음 요구사항을 만족하는 은행 계좌 클래스를 정의하여 소스코드와 결과화면 
+  			    스크린 샷을 제출하시오
+   		    [요구사항]
+   			가. 속성으로 예금주,계좌번호,잔액을 갖는다.
+      		예금주는 String,계좌번호 String,잔액은 int로 정의하여라
+   			나. 메소드로 인출 및 입금 메소드를 갖는다.
+       		인출 메소드는 인자로 인출할 금액을 받고 잔액이 부족시에는
+       		“잔액이 부족합니다”라는 메시지를 잔액이 충분할때는 인출한 금액을 출력하는 
+       		메소드이다
+       		입금 메소드는 인자로 입금할 금액을 받고 입금액을 잔액에 더하고
+       		입금한 금액을 출력하는 메소드이다
+   			다. toString()메소드를 오버라이딩하여 계좌정보 즉 얘금주,계좌번호,잔액을
+      		출력하는 메소드를 정의하여라
+      		예 예금주:자바맨, 계좌번호:123-456, 잔액:1000원
+		 */
+
+	}
+}	
+

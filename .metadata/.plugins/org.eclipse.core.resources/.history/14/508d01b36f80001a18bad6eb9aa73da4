@@ -1,0 +1,56 @@
+package model.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import model.VideoDao;
+import model.vo.Video;
+
+public class VideoModel implements VideoDao{
+	String url ="jdbc:oracle:thin:@192.168.0.68:1521:orcl";
+	String user = "scott";
+	String pass = "tiger";
+
+	public VideoModel() throws Exception{
+		// 1. 드라이버로딩
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+	}
+
+	public void insertVideo(Video vo, int count) throws Exception{
+
+		Connection con = null;
+		// 2. Connection 연결객체 얻어오기
+		try {
+			con = DriverManager.getConnection(url,user,pass);
+			con.setAutoCommit(false);	//자동커밋을 방지
+			// 3. sql 문장 만들기
+			String sql = "Insert into movie VALUES (SEQUENCE_movie_movieid.nextval,?,?,?,?,?)";
+			// 4. sql 전송객체 (PreparedStatement)		
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, vo.getGenre());
+			st.setString(2, vo.getVideoName());
+			st.setString(3, vo.getDirector());
+			st.setString(4, vo.getActor());
+			st.setString(5, vo.getExp());
+			// 5.첫번째 sql 문장 전송
+			st.executeUpdate();
+
+			// 6.닫기
+			st.close();
+
+			for(int i=0; i<count; i++) {
+				// 5. 두번째 sql1 문장 전송
+				String sql1 = "INSERT INTO video VALUES( sequence_video_videoid.nextval, SEQUENCE_movie_movieid.currval )";
+				PreparedStatement st1 = con.prepareStatement(sql1);
+				st1.executeUpdate();
+				st1.close();
+			}
+		}catch(SQLException e) {
+			con.rollback();
+		}finally {
+			con.close();
+		}
+	}
+}

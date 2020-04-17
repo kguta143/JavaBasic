@@ -1,0 +1,39 @@
+package basic;
+
+import java.sql.*;
+
+public class TestUpdate {
+
+	public static void main(String[] args) {
+		try {
+		// 1. 드라이버(OracleDriver)를 메모리에 로딩
+		// new oracle.jdbc.driver.OracleDriver();
+		// 예외처리 해야함
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		
+		// 2. Connection 얻어오기
+		Connection con = DriverManager.getConnection(
+				"jdbc:oracle:thin:@192.168.0.68:1521:orcl", "scott", "tiger");	//java와 oracle을 연결하는 가상통로
+		
+		// 3. SQL 문장 만들기
+		//INSERT INTO emp(empno, ename, sal) VALUES(9001,'맹순이',4000)
+		//String sql = "9001번 사원의 이름은 '홍길숙'이고 급여는 4500로 변경하기";
+		String sql = "UPDATE emp(ename, sal) SET('홍길숙',4500) WHERE empno=9001)";
+		// 4. 전송객체 얻어오기(3가지 있음)
+		Statement st = con.createStatement();
+		
+		// 5. 전송 
+		st.executeUpdate(sql);
+		
+		// 6. 닫기
+		st.close();
+		con.close(); // 완전 중요 DB Connection은 닫아줘야한다.
+		
+		System.out.println("성공");
+		}catch(Exception e) {
+			System.out.println("실패 : " + e.getMessage());
+		}
+		
+	}
+
+}

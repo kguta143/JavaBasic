@@ -1,0 +1,24 @@
+package pc_plus;
+
+import java.awt.Color;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class Noodle extends JPanel{
+
+	JButton a = new JButton();
+	JButton b = new JButton();
+	JButton c = new JButton();
+	JButton d = new JButton();
+	
+	public Noodle(){
+		setBackground(Color.WHITE);
+		setLayout(new GridLayout(2,2));
+		add(a);
+		add(b);
+		add(c);
+		add(d);
+	}
+}

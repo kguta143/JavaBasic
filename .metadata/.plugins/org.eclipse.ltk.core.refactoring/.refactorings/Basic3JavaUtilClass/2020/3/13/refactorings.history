@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;aArrayListEx.java&apos; to &apos;c_collection.aArrayListEx.java&apos;&#x0D;&#x0A;- Original project: &apos;Basic3JavaUtilClass&apos;&#x0D;&#x0A;- Destination element: &apos;c_collection.aArrayListEx.java&apos;&#x0D;&#x0A;- Original element: &apos;c_collection.aArrayListEx.java&apos;" description="Copy compilation unit" destination="/src&lt;c_collection{aArrayListEx.java" element1="/src&lt;c_collection{aArrayListEx.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1585289245391" units="1" version="1.0"/>
+</session>

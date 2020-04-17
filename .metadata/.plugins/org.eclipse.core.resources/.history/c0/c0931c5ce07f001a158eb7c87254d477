@@ -1,0 +1,9 @@
+package view;
+
+import javax.swing.JPanel;
+
+public class RecordView extends JPanel{
+
+	public RecordView() {
+	}
+}

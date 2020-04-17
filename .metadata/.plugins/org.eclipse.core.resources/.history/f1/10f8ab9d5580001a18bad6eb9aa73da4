@@ -1,0 +1,35 @@
+package view;
+
+import java.awt.*;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class ItemView extends JPanel{
+	//멤버변수 선언
+	JButton [] item = new JButton[20];
+	JButton alldelete= new JButton();
+	JButton order = new JButton();
+	JLabel won;
+	//화면
+	void display() {
+		JButton item[]= new JButton[20];
+		for( int i =0; i< item.length;i++) {
+			item[i]=new JButton();
+		}
+	//붙이기
+		//메뉴
+		JPanel p_left = new JPanel();
+		p_left.add(item[20]);
+		
+		//라벨(주문목록,요금,원) / 버튼(전체삭제,주문)
+		JPanel p_right = new JPanel();
+		
+		
+		setLayout(new GridLayout(1,2));
+		a
+	}
+
+	
+}

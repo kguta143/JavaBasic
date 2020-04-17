@@ -1,0 +1,10 @@
+package jdbc.gui;
+
+import java.sql.SQLException;
+
+public interface InfoModel {
+	
+	void insert(InfoVO vo) throws SQLException;	// public abstract가 자동으로 붙음
+	void selectAll() throws SQLException;	
+	void delete() throws SQLException;
+}

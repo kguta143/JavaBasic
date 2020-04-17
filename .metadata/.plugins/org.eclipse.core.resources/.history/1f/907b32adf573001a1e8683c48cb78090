@@ -1,0 +1,25 @@
+package pc_plus;
+
+import java.awt.Color;
+import java.awt.GridLayout;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class Mainmenu extends JPanel{
+	
+	JButton a = new JButton();
+	JButton b = new JButton("b",new ImageIcon("src/c_info/Imgs/캡처.PNG"));
+	JButton c = new JButton("c",new ImageIcon("src/c_info/Imgs/캡처.PNG"));
+	JButton d = new JButton();
+	
+	public Mainmenu(){
+		setBackground(Color.WHITE);
+		setLayout(new GridLayout(2,2));
+		add(a);
+		add(b);
+		add(c);
+		add(d);
+	}
+}

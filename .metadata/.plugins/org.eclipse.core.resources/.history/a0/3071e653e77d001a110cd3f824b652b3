@@ -1,0 +1,25 @@
+package Test;
+
+import java.util.Scanner;
+
+public class main {
+
+	public static void main(String[] args) {
+
+		int a,b=0;
+		int sum=0;
+		double avg=0;
+		
+		Scanner sc = new Scanner(System.in);
+		
+		a=sc.nextInt();
+		b=sc.nextInt();
+		
+		sum=a+b;
+		avg=(double)sum/2;
+		
+		System.out.println("sum : "+sum);
+		System.out.printf("avg : %.1f\n",avg);
+	}
+
+}

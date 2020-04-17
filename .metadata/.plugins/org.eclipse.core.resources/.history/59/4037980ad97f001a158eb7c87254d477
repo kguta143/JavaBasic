@@ -1,0 +1,24 @@
+import javax.swing.JFrame;
+
+public class Fishing_Ground extends JFrame{
+	//멤버변수 선언
+	
+	//
+	
+	//메인화면구성
+	void display() {
+		
+		
+		
+		// 화면사이즈
+		setSize(1500,1400);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	public static void main(String[] args) {
+		Fishing_Ground fg = new Fishing_Ground();
+		fg.display();
+		
+	}
+
+}

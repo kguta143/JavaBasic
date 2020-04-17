@@ -1,0 +1,51 @@
+package jdbc.gui;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class InfoModelImpl implements InfoModel {
+
+	String url = "jdbc:oracle:thin:@192.168.0.68:1521:orcl";
+	String user = "scott";
+	String pass = "tiger";
+
+	public InfoModelImpl() throws Exception{
+		// 1. 드라이버 로딩
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+	}
+
+	public void insert() throws SQLException {
+		Connection con = null;
+		try {
+			// 2. 연결객체 얻어오기
+			con = DriverManager.getConnection(url, user, pass);
+
+			// 3. SQL 문장
+			String sql = "INSERT INTO info_tab(name, jumin, tel, gender, age, home) "
+					+ " VALUES('홍홍홍','880808-1234567','051-555-5555',  "
+					+ " '여자', 33, '제주')";
+			
+			// 4. 전송객체 얻어오기
+			PreparedStatement st = con.prepareStatement(sql);
+
+			// 5. 전송
+			st.executeUpdate();
+			// 6. 닫기
+			st.close();
+		}finally {
+			con.close();
+		}
+	}
+	public void selectAll() throws SQLException {
+
+
+	}
+
+	public void delete() throws SQLException {
+
+
+	}
+
+}

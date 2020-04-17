@@ -1,0 +1,25 @@
+package basic;
+
+import java.sql.*;
+
+public class Test {
+
+	public static void main(String[] args) {
+		try {
+		// 1. 드라이버(OracleDriver)를 메모리에 로딩
+		// new oracle.jdbc.driver.OracleDriver();
+		// 예외처리 해야함
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		
+		// 2. Connection 얻어오기
+		Connection con = DriverManager.getConnection(
+				"jdbc:oracle:thin:@192.168.0.66:1521:orcl", "scott", "tiger");	//java와 oracle을 연결하는 가상통로
+		
+		System.out.println("성공");
+		}catch(Exception e) {
+			System.out.println("실패 : " + e.getMessage());
+		}
+		
+	}
+
+}

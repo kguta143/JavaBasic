@@ -1,0 +1,17 @@
+package view;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class ItemView extends JPanel{
+	//멤버변수 선언
+	JButton [] item = new JButton[20];
+	JButton a = new JButton();
+	JButton b = new JButton();
+	JLabel la;
+	// 
+	public ItemView() {
+		
+	}
+}

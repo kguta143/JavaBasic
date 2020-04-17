@@ -1,0 +1,58 @@
+package h_jtable;
+
+import java.awt.BorderLayout;
+import java.util.*;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
+
+public class JTableTest extends JFrame{
+	//멤버번수 선언
+	JTable table;	//화면만 관리함
+	JButton btn;
+	
+	//생성자함수 생성
+	public JTableTest() {
+		//객체 생성
+		table = new JTable();	
+		btn = new JButton("확인");
+	
+		//화면 구성
+		add(table, BorderLayout.CENTER);
+		add(btn, BorderLayout.NORTH);
+		
+		//화면 출력
+		setBounds(100, 100, 500, 400);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	class MyTableModel extends AbstractTableModel{ //추상메소드가 있음
+		//내용관리
+		String [] columnName = {"하나","둘","삼","사"};
+		ArrayList data = new ArrayList();
+		
+		public int getColumnCount() {
+			
+			return columnName.length;
+		}
+
+		public int getRowCount() {
+			
+			return 0;
+		}
+
+		public Object getValueAt(int rowIndex, int columnIndex) {
+			
+			return null;
+		}	
+		
+	}
+	
+	public static void main(String[] args) {
+		JTableTest jt = new JTableTest();
+	}
+
+}

@@ -1,0 +1,22 @@
+package jdbc.gui;
+
+import java.sql.SQLException;
+
+public class InfoModelImpl implements InfoModel {
+
+	public void insert() throws SQLException {
+
+		
+	}
+
+	public void selectAll() throws SQLException {
+
+		
+	}
+
+	public void delete() throws SQLException {
+
+		
+	}
+
+}

@@ -1,0 +1,20 @@
+package h_jtable;
+
+import javax.swing.*;
+
+public class JTableTest extends JFrame{
+	//멤버번수 선언
+	JTable table;
+	JButton btn;
+	
+	//생성자함수 생성
+	public JTableTest() {
+		
+		setBounds(100, 100, 500, 400);
+	}
+	
+	public static void main(String[] args) {
+		JTableTest jt = new JTableTest();
+	}
+
+}

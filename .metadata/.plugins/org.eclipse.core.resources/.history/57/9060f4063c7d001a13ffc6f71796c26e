@@ -1,0 +1,17 @@
+package basic;
+
+public class Test {
+
+	public static void main(String[] args) {
+		try {
+		// 1. 드라이버(OracleDriver)를 메모리에 로딩
+		// new oracle.jdbc.driver.OracleDriver();
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		System.out.println("성공");
+		}catch(Exception ex) {
+			System.out.println("실패 : " + ex.getMessage());
+		}
+		
+	}
+
+}
